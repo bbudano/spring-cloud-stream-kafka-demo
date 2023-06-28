@@ -32,6 +32,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.example.spring-cloud-stream-kafka-demo</groupId>
+			<artifactId>integration</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>

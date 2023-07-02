@@ -23,7 +23,7 @@ public class ProducerApplication {
 
 	@Scheduled(initialDelay = 5000L, fixedRate = 5000L)
 	public void sendMessage() {
-		var message = new ExampleMessage(UUID.randomUUID().toString(), "Hello from producer");
+		var message = new ExampleMessage(UUID.randomUUID().toString(), "HELLO");
 		streamBridge.send("exampleMessage-out-0", message);
 	}
 

@@ -4,3 +4,5 @@ spring:
       bindings:
         processMessage-in-0:
           destination: example-topic
+        processMessage-out-0:
+          destination: processed-topic

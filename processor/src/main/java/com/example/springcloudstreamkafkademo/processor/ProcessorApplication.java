@@ -5,6 +5,7 @@ import com.example.springcloudstreamkafkademo.processor.mapper.MessageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.Message;
 
@@ -21,10 +22,10 @@ public class ProcessorApplication {
 	private MessageMapper messageMapper;
 
 	@Bean
-	Consumer<Message<ExampleMessage>> processMessage() {
+	Consumer<Message<ExampleMessage>> processMessage(StreamBridge streamBridge) {
 		return message -> {
 			var processedMessage = messageMapper.toProcessedMessage(message.getPayload());
-			System.out.println(processedMessage);
+			streamBridge.send("processMessage-out-0", processedMessage);
 		};
 	}
 

@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        consume-in-0:
+          destination: processed-topic

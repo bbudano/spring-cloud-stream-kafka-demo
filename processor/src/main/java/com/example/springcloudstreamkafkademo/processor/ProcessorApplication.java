@@ -1,6 +1,8 @@
 package com.example.springcloudstreamkafkademo.processor;
 
 import com.example.springcloudstreamkafkademo.integration.ExampleMessage;
+import com.example.springcloudstreamkafkademo.processor.mapper.MessageMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -15,9 +17,15 @@ public class ProcessorApplication {
 		SpringApplication.run(ProcessorApplication.class, args);
 	}
 
+	@Autowired
+	private MessageMapper messageMapper;
+
 	@Bean
 	Consumer<Message<ExampleMessage>> processMessage() {
-		return message -> System.out.println(message.getPayload());
+		return message -> {
+			var processedMessage = messageMapper.toProcessedMessage(message.getPayload());
+			System.out.println(processedMessage);
+		};
 	}
 
 }

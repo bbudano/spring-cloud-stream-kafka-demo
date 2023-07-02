@@ -6,10 +6,12 @@ import org.mapstruct.*;
 
 import java.util.Objects;
 
-@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR, unmappedTargetPolicy = ReportingPolicy.WARN)
+@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR,
+        unmappedTargetPolicy = ReportingPolicy.WARN)
 public interface MessageMapper {
 
     @Mapping(target = "data", source = "data", qualifiedByName = "mapData")
+    @Mapping(target = "processedAt", expression = "java( Instant.now() )")
     ProcessedMessage toProcessedMessage(ExampleMessage exampleMessage);
 
     @Named("mapData")

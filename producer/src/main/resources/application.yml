@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        exampleMessage-out-0:
+          destination: example-topic

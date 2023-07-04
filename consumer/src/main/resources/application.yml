@@ -1,6 +1,10 @@
 spring:
   cloud:
     stream:
+      kafka:
+        binder:
+          brokers: localhost:29092
       bindings:
         consume-in-0:
           destination: processed-topic
+          group: processed-group

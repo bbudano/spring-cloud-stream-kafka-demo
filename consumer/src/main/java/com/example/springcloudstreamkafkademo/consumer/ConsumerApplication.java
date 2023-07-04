@@ -19,7 +19,7 @@ public class ConsumerApplication {
 
 	@Bean
 	Consumer<Message<ProcessedMessage>> consume() {
-		return message -> log.info("Consumed message: {}", message.getPayload());
+		return message -> log.info("Payload: {} Header: {}", message.getPayload(), message.getHeaders());
 	}
 
 }

@@ -1,8 +1,30 @@
 spring:
   cloud:
     stream:
+      binders:
+        kafka1:
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: localhost:19092
+        kafka2:
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: localhost:29092
       bindings:
         processMessage-in-0:
+          binder: kafka1
           destination: example-topic
+          group: example-group
         processMessage-out-0:
+          binder: kafka2
           destination: processed-topic

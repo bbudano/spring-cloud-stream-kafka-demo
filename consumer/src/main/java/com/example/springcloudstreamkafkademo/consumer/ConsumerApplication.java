@@ -13,13 +13,14 @@ import java.util.function.Consumer;
 @SpringBootApplication
 public class ConsumerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ConsumerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ConsumerApplication.class, args);
+    }
 
-	@Bean
-	Consumer<Message<ProcessedMessage>> consume() {
-		return message -> log.info("Payload: {} Header: {}", message.getPayload(), message.getHeaders());
-	}
+    @Bean
+    Consumer<Message<ProcessedMessage>> consume() {
+        return message -> log.info("Received message, payload: {} headers: {}",
+                message.getPayload(), message.getHeaders());
+    }
 
 }
